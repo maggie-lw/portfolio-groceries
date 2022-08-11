@@ -1,42 +1,32 @@
-import { useContext } from "react";
-import AuthContext from "../store/auth-context";
+import { getAuth } from "firebase/auth";
+import { Fragment } from "react";
+import EditProfile from "./EditProfile";
 
 const UserProfile = () => {
-  const authCtx = useContext(AuthContext);
+  const auth = getAuth();
+  
+  const user = auth.currentUser;
 
-  let data = {};
-  let userInfo = [];
+  let displayName;
+  let email;
 
-  fetch(
-    "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyDeI2hVzfgQxaivutV8vA4z6n1X8fnSx-o",
-    {
-      method: "POST",
-      body: JSON.stringify({ idToken: authCtx.token }),
-      headers: { "Content-Type": "application/json" },
-    }
-  )
-    .then((response) => {
-      if (response.ok) {
-        data = response.json();
-      } else {
-        return response.json().then((data) => {
-          let errorMessage = "Authentication failed!";
-          if (data && data.error && data.error.message) {
-            errorMessage = data.error.message;
-          }
-          throw new Error(errorMessage);
-        });
-      }
-    })
-    .catch((err) => {
-      alert(err.message);
-    });
+  if (user !== null) {
+    displayName = user.displayName;
+    email = user.email;
+  } else {
+    console.log("error retrieving data");
+  }
 
   return (
+    <Fragment>
     <section>
-      <h3>Name: </h3>
-      <h3>Email: </h3>
+      <h3>Name: </h3> <p>{displayName ? displayName : "not provided"}</p>
+      <h3>Email: </h3><p>{email}</p>
     </section>
+    <section>
+      <EditProfile />
+    </section>
+    </Fragment>
   );
 };
 
