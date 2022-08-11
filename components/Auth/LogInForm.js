@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { useRouter } from "next/dist/client/router";
 import AuthContext from "../store/auth-context";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 import useInput from "../hooks/use-input";
 
@@ -9,6 +10,7 @@ import classes from "./LogInForm.module.css";
 const LogInForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const auth = getAuth();
 
   const authCtx = useContext(AuthContext);
 
@@ -39,7 +41,22 @@ const LogInForm = () => {
     event.preventDefault();
 
     setIsLoading(true);
-    fetch(
+
+    signInWithEmailAndPassword(auth, enteredEmail, enteredPassword)
+      .then((userCredential) => {
+        authCtx.login(userCredential.user.accessToken);
+      })
+      .then(() => {
+        router.push("/lists");
+      })
+      .catch((err) => {
+        alert(err.message);
+        setIsLoading(false);
+      });
+
+    emailResetHandler();
+    passwordResetHandler();
+    /*fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDeI2hVzfgQxaivutV8vA4z6n1X8fnSx-o",
       {
         method: "POST",
@@ -74,7 +91,7 @@ const LogInForm = () => {
       });
 
     emailResetHandler();
-    passwordResetHandler();
+    passwordResetHandler();*/
   };
 
   const emailInputClasses = emailInputHasError

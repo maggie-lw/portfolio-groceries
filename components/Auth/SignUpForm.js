@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useRouter } from "next/router";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import AuthContext from "../store/auth-context";
 
 import useInput from "../hooks/use-input";
 
@@ -8,6 +10,8 @@ import classes from "./SignUpForm.module.css";
 const SignUpForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const auth = getAuth();
+  const authCtx = useContext(AuthContext);
 
   const {
     value: enteredEmail,
@@ -36,7 +40,22 @@ const SignUpForm = () => {
     event.preventDefault();
 
     setIsLoading(true);
-    fetch(
+
+    createUserWithEmailAndPassword(auth, enteredEmail, enteredPassword)
+      .then((userCredential) => {
+        authCtx.login(userCredential.user.accessToken);
+      })
+      .then(() => {
+        router.push("/lists");
+      })
+      .catch((err) => {
+        alert(err.message);
+        setIsLoading(false);
+      });
+
+    emailResetHandler();
+    passwordResetHandler();
+    /*fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDeI2hVzfgQxaivutV8vA4z6n1X8fnSx-o",
       {
         method: "POST",
@@ -70,7 +89,7 @@ const SignUpForm = () => {
       });
 
     emailResetHandler();
-    passwordResetHandler();
+    passwordResetHandler();*/
   };
 
   const emailInputClasses = emailInputHasError
