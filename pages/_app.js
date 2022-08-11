@@ -23,7 +23,6 @@ initializeApp(firebaseConfig);
 function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
-      <firebaseConfig />
       <Layout>
         <Component {...pageProps} />
       </Layout>
