@@ -22,10 +22,10 @@
 
 .list {
     width: auto;
-    height: 5rem;
+    height: auto;
     background-color: rgb(252, 221, 156);
     margin: 10px 10px 0px 10px;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
 }
 
 .listcontent {

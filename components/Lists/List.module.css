@@ -1,0 +1,22 @@
+.list {
+    background-color: #e96840;
+    border-radius: 3px;
+    color: white;
+    list-style: none;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5px 0px 5px;
+    margin: 5px 0px 5px 0px;
+    align-items: baseline;
+}
+  
+  .list h3 {
+    color: #2e0101;
+  }
+  
+  .list h4 {
+    color: #5a1515;
+    font-size: 0.7rem;
+  }
+  
