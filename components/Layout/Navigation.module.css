@@ -4,13 +4,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #5F9EA0;
+    background-color: #eb5555;
     padding: 0 10%;
 }
 
 .logo {
     font-size: 2rem;
-    color: #191900;
+    color: #3a1100;
     font-weight: bold;
 }
 
@@ -29,29 +29,29 @@
 .header a {
     text-decoration: dotted;
     font-size: 1.5rem;
-    color: #112f30;
+    color: #301111;
     font-family: Cambria;
 }
 
 .header a:hover,
 .header a:active,
 .header a.active {
-    color: #2f5b5c;
+    color: #a12121;
 }
 
 .header button {
     cursor: pointer;
     font: inherit;
     color: white;
-    background-color: #112f30;
-    border: 1px solid #112f30;
+    background-color: #701111;
+    border: 1px solid #700505;
     border-radius: 4px;
     padding: 0.5rem 2.5rem;
 }
 
 .header button:hover {
-    background-color: #203f41;
-    border-color: #203f41;
+    background-color: #9b3131;
+    border-color: #9b3131;
 }
 
 .header button:disabled, 
