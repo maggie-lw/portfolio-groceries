@@ -4,11 +4,11 @@ const ListContent = (props) => {
   return (
     <div className={classes.content}>
       <div className={classes.header}>
-        <h1>Title</h1>
-        <h3>Date</h3>
+        <h1>{props.title}</h1>
+        <h3>{props.dateCreated}</h3>
       </div>
       <div>
-        <p>List content</p>
+        <p>{props.content}</p>
       </div>
     </div>
   );

@@ -95,12 +95,11 @@ const AllLists = (props) => {
               <div>
                 <List
                   key={list.id}
-                  id={JSON.stringify(list.id)}
                   title={list.title}
                   dateCreated={list.dateCreated}
                 />
                 <div className={classes.controls}>
-                  <button onClick={props.onOpenList}>Open</button>
+                  <button onClick={props.onOpenList.bind(this, list.id)}>Open</button>
                   <button onClick={deleteListHandler.bind(this, list.id)}>Delete</button>
                 </div>
               </div>
