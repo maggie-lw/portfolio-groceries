@@ -1,7 +1,12 @@
-import AllLists from "../components/Lists/AllLists";
+import { Fragment } from "react";
+import GroceryList from "../components/Lists/GroceryLists";
 
 const Lists = () => {
-  return <AllLists />
+  return (
+  <Fragment>
+    <GroceryList />
+  </Fragment>
+  );
 };
 
 export default Lists;

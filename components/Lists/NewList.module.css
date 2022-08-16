@@ -1,5 +1,7 @@
 .control {
     margin: 1rem 0;
+    display: flex;
+    justify-content: center;
   }
   
   .control label {
@@ -30,6 +32,7 @@
     border: none;
     border-radius: 10px;
     padding: 12px;
+    cursor: pointer;
   }
 
   .control button:hover {

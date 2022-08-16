@@ -1,0 +1,18 @@
+.content {
+    padding: 0px 20px 5px 20px;
+    background-color: #e96840;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.header h1 {
+    font-size: 2rem;
+}
+
+.header h3 {
+    font-size: 1rem;
+}

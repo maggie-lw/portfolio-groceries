@@ -31,6 +31,7 @@
     font-size: 1.5rem;
     color: #301111;
     font-family: Cambria;
+    cursor: pointer;
 }
 
 .header a:hover,
@@ -47,6 +48,7 @@
     border: 1px solid #700505;
     border-radius: 4px;
     padding: 0.5rem 2.5rem;
+    cursor: pointer;
 }
 
 .header button:hover {

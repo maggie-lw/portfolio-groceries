@@ -64,28 +64,23 @@ const AllLists = () => {
 
   return (
     <Fragment>
-      <div className={classes.blocks}>
-        <section className={classes.sidebar}>
-          <section className={classes.user}>
-            <p>Welcome, </p>
-            <h1>{username}!</h1>
-          </section>
-          <section className={classes.list}>
-            <h1>List of lists</h1>
-            <NewList onAddList={addListHandler} />
-            <ul>
-              {lists.map((list) => (
-                <List
-                  key={list.id}
-                  title={list.title}
-                  dateCreated={list.dateCreated}
-                />
-              ))}
-            </ul>
-          </section>
+      <div>
+        <section className={classes.user}>
+          <p>Welcome, </p>
+          <h1>{username}!</h1>
         </section>
-        <section className={classes.listcontent}>
-          <p>List content</p>
+        <section className={classes.list}>
+          <h1>List of lists</h1>
+          <NewList onAddList={addListHandler} />
+          <ul>
+            {lists.map((list) => (
+              <List
+                key={list.id}
+                title={list.title}
+                dateCreated={list.dateCreated}
+              />
+            ))}
+          </ul>
         </section>
       </div>
     </Fragment>
