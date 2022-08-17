@@ -7,12 +7,12 @@
 }
 
 .sidebar {
-    width: 35rem;
+    width: 30rem;
     height: auto;
 }
 
 .listcontent {
-    width: 100%;
+    width: 70%;
     height: auto;
     background-color: rgb(252, 221, 156);
     margin: 0px 5px 0px 20px;
