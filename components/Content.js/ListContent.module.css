@@ -1,18 +1,17 @@
-.content {
-    padding: 0px 20px 5px 20px;
-    background-color: #e96840;
-}
-
-.header {
+.list {
+    background-color: #e9987f;
+    border-radius: 3px;
+    color: white;
+    list-style: none;
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: space-between;
+    padding: 0px 15px 0px 15px;
+    margin: 5px 0px 5px 0px;
     align-items: baseline;
 }
-
-.header h1 {
-    font-size: 2rem;
-}
-
-.header h3 {
-    font-size: 1rem;
-}
+  
+  .list h3 {
+    color: #2e0101;
+  }
