@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useRef } from "react";
 
+import classes from './AddContent.module.css';
+
 const AddContent = (props) => {
   const [toggleAdd, setToggleAdd] = useState(false);
   const itemNameInputRef = useRef();
@@ -26,13 +28,13 @@ const AddContent = (props) => {
   return (
     <div>
       {toggleAdd && (
-        <form onSubmit={submitHandler}>
-          <div>
-            <label htmlFor="item-name">Item Name</label>
-            <input id="item-name" type="text" ref={itemNameInputRef} />
+        <form onSubmit={submitHandler} className={classes.form}>
+          <div className={classes.formarea}>
+            <label htmlFor="item-name">Item Name: </label>
+            <input id="item-name" type="text" ref={itemNameInputRef} className={classes.nameinput} />
           </div>
-          <div>
-            <label htmlFor="item-amount"></label>
+          <div className={classes.formarea}>
+            <label htmlFor="item-amount">Amount: </label>
             <input
               id={"amount_"}
               type="number"
@@ -40,6 +42,7 @@ const AddContent = (props) => {
               step={1}
               defaultValue={1}
               ref={itemAmountInputRef}
+              className={classes.amountinput}
             />
           </div>
           <div>
@@ -47,9 +50,9 @@ const AddContent = (props) => {
           </div>
         </form>
       )}
-      <div>
+      <div className={classes.control}>
         <button onClick={toggleAddItem}>
-          {toggleAdd ? "Cancel" : "Add Items"}
+          {toggleAdd ? "X" : "+ Add"}
         </button>
       </div>
     </div>

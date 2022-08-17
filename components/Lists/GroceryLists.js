@@ -1,12 +1,12 @@
+import { useState } from "react";
+import { getAuth } from "firebase/auth";
+
+import AddContent from "../Content.js/AddContent";
 import ListContent from "../Content.js/ListContent";
 import ListHeader from "../Content.js/ListHeader";
 import AllLists from "./AllLists";
-import { useState } from "react";
-
-import { getAuth } from "firebase/auth";
 
 import classes from "./GroceryLists.module.css";
-import AddContent from "../Content.js/AddContent";
 
 const GroceryLists = (props) => {
   const auth = getAuth();
@@ -107,6 +107,9 @@ const GroceryLists = (props) => {
           <div className={classes.listheader}>
             <div className={classes.content}>
               <ListHeader title={listTitle} dateCreated={listDate} />
+              <div>
+                <AddContent onAddItem={addItemHandler} />
+              </div>
               {lists.length === 0 ? (
                 <p>There's nothing in here!</p>
               ) : (
@@ -115,9 +118,6 @@ const GroceryLists = (props) => {
                 ))
               )}
             </div>
-          </div>
-          <div>
-            <AddContent onAddItem={addItemHandler} />
           </div>
         </section>
       )}
