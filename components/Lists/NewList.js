@@ -20,7 +20,6 @@ const NewList = (props) => {
         id: props.id,
         title: listTitleInputRef.current.value,
         dateCreated: currentDate,
-        content: 0,
     };
     setCreateList(!createList);
     props.onAddList(newList);
