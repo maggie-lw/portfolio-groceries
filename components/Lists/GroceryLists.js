@@ -49,6 +49,32 @@ const GroceryLists = (props) => {
     }
   };
 
+  const fetchListHandler = async () => {
+    try {
+      const response = await fetch(
+        `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list.json`
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong when retrieving data!");
+      }
+
+      const data = await response.json();
+
+      const listContent = [];
+
+      for (const key in data.content) {
+        listContent.push({
+          id: key,
+          item: data.content[key].content.name,
+          amount: data.content[key].content.amount,
+        });
+      }
+      setLists(listContent);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
   const addItemHandler = async (newContent) => {
     console.log("List ID " + listIdNo);
     const response = await fetch(
@@ -66,7 +92,7 @@ const GroceryLists = (props) => {
       throw new Error(data.message || "Could not create item.");
     }
 
-    openListHandler();
+    fetchListHandler();
 
     return null;
   };
