@@ -36,7 +36,7 @@ const AddContent = (props) => {
           <div className={classes.formarea}>
             <label htmlFor="item-amount">Amount: </label>
             <input
-              id={"amount_"}
+              id={"amount"}
               type="number"
               min={1}
               step={1}

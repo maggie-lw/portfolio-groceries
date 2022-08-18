@@ -1,55 +1,99 @@
 .content {
-    background-color: #e9987f;
-    border-radius: 15px;
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px 15px 5px 15px;
-    margin: 5px 0px 5px 0px;
-    align-items: center;
+  background-color: #e9987f;
+  border-radius: 15px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 15px 5px 15px;
+  margin: 5px 0px 5px 0px;
+  align-items: center;
 }
 
 .listarea {
-    width: 75%;
-    margin: 0px 5px 0px 5px;
+  width: 75%;
+  margin: 0px 5px 0px 5px;
 }
 
 .list {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
 }
 
 .buttons {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
-.buttons button{
-    background-color: #a92700;
-    color: #fed4d4;
-    border: none;
-    border-radius: 10px;
-    padding: 6px;
-    cursor: pointer;
-    margin: 5px;
+.buttons button {
+  background-color: #a92700;
+  color: #fed4d4;
+  border: none;
+  border-radius: 10px;
+  padding: 6px;
+  cursor: pointer;
+  margin: 5px;
 }
 
 .buttons button:hover {
-    background-color: rgb(214, 81, 81);
+  background-color: rgb(214, 81, 81);
 }
 
 .extra {
-    background-color: #e9987f;
-    border-radius: 15px;
-    color: #2e0101;
-    list-style: none;
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 15px 0px 15px;
-    margin: 5px 0px 5px 0px;
-    align-items: baseline;
+  background-color: #e9987f;
+  border-radius: 15px;
+  color: #2e0101;
+  list-style: none;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 15px 0px 15px;
+  margin: 5px 0px 5px 0px;
+  align-self: baseline;
+}
+
+.editform {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 7rem;
+}
+
+.editform form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 5px 5px 0px 5px;
+}
+
+.editform label {
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-bottom: 0.2rem;
+  text-align: left;
+}
+
+.editform input {
+  width: 100%;
+  display: block;
+  font: inherit;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}
+
+.editform button {
+  background-color: #a92700;
+  color: #fed4d4;
+  border: none;
+  border-radius: 10px;
+  padding: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.editform button:hover {
+  background-color: rgb(214, 81, 81);
 }
