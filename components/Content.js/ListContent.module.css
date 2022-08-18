@@ -44,18 +44,9 @@
   background-color: rgb(214, 81, 81);
 }
 
-.extra {
-  background-color: #e9987f;
-  border-radius: 15px;
-  color: #2e0101;
-  list-style: none;
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 15px 0px 15px;
-  margin: 5px 0px 5px 0px;
-  align-self: baseline;
+.buttons button:disabled {
+    background-color: rgb(226, 130, 130);
+    color: #ccc;
 }
 
 .editform {

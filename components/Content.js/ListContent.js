@@ -4,7 +4,7 @@ import classes from "./ListContent.module.css";
 const ListContent = (props) => {
   const [editItem, setEditItem] = useState(false);
   const editAmountInputRef = useRef();
-  const [isCompleted, setIsCompleted] = useState(props.checked);
+  const [completed, setCompleted] = useState(props.checked);
 
   const toggleEditForm = () => {
     setEditItem(!editItem);
@@ -15,22 +15,15 @@ const ListContent = (props) => {
 
     const newAmount = editAmountInputRef.current.value;
     setEditItem(false);
-    setIsCompleted(false);
-
     props.onEditItem(props.id, newAmount);
   };
 
   const toggleCompletion = (event) => {
-    setIsCompleted(event.target.checked);
+    setCompleted(event.target.checked);
+    props.onCompleteItem(props.id, event.target.checked);
   };
 
-  useEffect(() => {
-    props.onCompleteItem(props.id, isCompleted);
-  }, [isCompleted])
-
   const deleteHandler = () => {
-
-    setIsCompleted(false);
 
     props.onDeleteItem(props.id);
   };
@@ -70,9 +63,9 @@ const ListContent = (props) => {
           </form>
         )}
         <div className={classes.buttons}>
-          <button onClick={toggleEditForm}>
+          {!completed && <button onClick={toggleEditForm}>
             {editItem ? "Cancel" : "Edit"}
-          </button>
+          </button>}
           {!editItem && (
             <button onClick={deleteHandler}>
               Delete
