@@ -11,7 +11,7 @@ const ListContent = (props) => {
       </div>
       <div className={classes.buttons}>
         <button>Edit</button>
-        <button>Delete</button>
+        <button onClick={props.onDeleteItem.bind(this, props.id)}>Delete</button>
       </div>
     </div>
   );

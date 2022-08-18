@@ -97,6 +97,25 @@ const GroceryLists = (props) => {
     return null;
   };
 
+  const deleteItemHandler = async (itemId) => {
+    const response = await fetch(
+      `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list/content/${itemId}.json`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Could not delete item.");
+    }
+
+    fetchListHandler();
+    return null;
+  };
+
+
   return (
     <div className={classes.blocks}>
       <div className={classes.sidebar}>
@@ -114,7 +133,7 @@ const GroceryLists = (props) => {
                 <p>There's nothing in here!</p>
               ) : (
                 lists.map((list) => (
-                  <ListContent item={list.item} amount={list.amount} />
+                  <ListContent id={list.id} item={list.item} amount={list.amount} onDeleteItem={deleteItemHandler} />
                 ))
               )}
             </div>
