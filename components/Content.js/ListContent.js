@@ -15,6 +15,7 @@ const ListContent = (props) => {
 
     const newAmount = editAmountInputRef.current.value;
     setEditItem(false);
+    setIsCompleted(false);
 
     props.onEditItem(props.id, newAmount);
   };
@@ -27,13 +28,27 @@ const ListContent = (props) => {
     }
   };
 
-  const listCompletionClasses = isCompleted? `${classes.list} ${classes.listcompleted}` : `${classes.list}`;
+  const deleteHandler = () => {
+
+    setIsCompleted(false);
+
+    props.onDeleteItem(props.id);
+  };
+
+  const listCompletionClasses = isCompleted
+    ? `${classes.list} ${classes.listcompleted}`
+    : `${classes.list}`;
 
   return (
     <div className={classes.content}>
       <div className={classes.listarea}>
         <li className={listCompletionClasses}>
-          <input type="checkbox" value={isCompleted} onChange={toggleCompletion} />
+          <input
+            type="checkbox"
+            value={isCompleted}
+            onChange={toggleCompletion}
+            checked={isCompleted}
+          />
           <h3>{props.item}</h3>
           <h3>x {props.amount}</h3>
         </li>
@@ -60,7 +75,7 @@ const ListContent = (props) => {
             {editItem ? "Cancel" : "Edit"}
           </button>
           {!editItem && (
-            <button onClick={props.onDeleteItem.bind(this, props.id)}>
+            <button onClick={deleteHandler}>
               Delete
             </button>
           )}
