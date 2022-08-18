@@ -19,6 +19,7 @@ const AddContent = (props) => {
       id: props.id,
       name: itemNameInputRef.current.value,
       amount: itemAmountInputRef.current.value,
+      checked: false,
     };
 
     setToggleAdd(!toggleAdd);

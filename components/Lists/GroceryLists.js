@@ -41,6 +41,7 @@ const GroceryLists = (props) => {
           id: key,
           item: data.content[key].content.name,
           amount: data.content[key].content.amount,
+          checked: data.content[key].content.checked,
         });
       }
       setLists(listContent);
@@ -68,6 +69,7 @@ const GroceryLists = (props) => {
           key: key,
           item: data.content[key].content.name,
           amount: data.content[key].content.amount,
+          checked: data.content[key].content.checked,
         });
       }
       setLists(listContent);
@@ -113,7 +115,29 @@ const GroceryLists = (props) => {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || "Could not delete item.");
+      throw new Error(data.message || "Could not update item amount.");
+    }
+
+    fetchListHandler();
+    return null;
+  };
+
+  const completedItemHandler = async (itemId, checkedForCompletion) => {
+    const response = await fetch(
+      `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list/content/${itemId}/content.json`,
+      {
+        method: "PATCH",
+        body: JSON.stringify({ checked: checkedForCompletion }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Could not update completion of item.");
     }
 
     fetchListHandler();
@@ -159,7 +183,9 @@ const GroceryLists = (props) => {
                     id={list.id}
                     item={list.item}
                     amount={list.amount}
+                    checked={list.checked}
                     onEditItem={editItemHandler}
+                    onCompleteItem={completedItemHandler}
                     onDeleteItem={deleteItemHandler}
                   />
                 ))

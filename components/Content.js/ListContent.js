@@ -1,10 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import classes from "./ListContent.module.css";
 
 const ListContent = (props) => {
   const [editItem, setEditItem] = useState(false);
   const editAmountInputRef = useRef();
-  const [isCompleted, setIsCompleted] = useState(false);
+  const [isCompleted, setIsCompleted] = useState(props.checked);
 
   const toggleEditForm = () => {
     setEditItem(!editItem);
@@ -21,12 +21,12 @@ const ListContent = (props) => {
   };
 
   const toggleCompletion = (event) => {
-    if (event.target.checked) {
-      setIsCompleted(true);
-    } else {
-      setIsCompleted(false);
-    }
+    setIsCompleted(event.target.checked);
   };
+
+  useEffect(() => {
+    props.onCompleteItem(props.id, isCompleted);
+  }, [isCompleted])
 
   const deleteHandler = () => {
 
@@ -35,7 +35,7 @@ const ListContent = (props) => {
     props.onDeleteItem(props.id);
   };
 
-  const listCompletionClasses = isCompleted
+  const listCompletionClasses = props.checked
     ? `${classes.list} ${classes.listcompleted}`
     : `${classes.list}`;
 
@@ -45,9 +45,8 @@ const ListContent = (props) => {
         <li className={listCompletionClasses}>
           <input
             type="checkbox"
-            value={isCompleted}
+            checked={props.checked}
             onChange={toggleCompletion}
-            checked={isCompleted}
           />
           <h3>{props.item}</h3>
           <h3>x {props.amount}</h3>
