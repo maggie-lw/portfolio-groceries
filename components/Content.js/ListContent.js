@@ -4,6 +4,7 @@ import classes from "./ListContent.module.css";
 const ListContent = (props) => {
   const [editItem, setEditItem] = useState(false);
   const editAmountInputRef = useRef();
+  const [isCompleted, setIsCompleted] = useState(false);
 
   const toggleEditForm = () => {
     setEditItem(!editItem);
@@ -18,10 +19,21 @@ const ListContent = (props) => {
     props.onEditItem(props.id, newAmount);
   };
 
+  const toggleCompletion = (event) => {
+    if (event.target.checked) {
+      setIsCompleted(true);
+    } else {
+      setIsCompleted(false);
+    }
+  };
+
+  const listCompletionClasses = isCompleted? `${classes.list} ${classes.listcompleted}` : `${classes.list}`;
+
   return (
     <div className={classes.content}>
       <div className={classes.listarea}>
-        <li className={classes.list}>
+        <li className={listCompletionClasses}>
+          <input type="checkbox" value={isCompleted} onChange={toggleCompletion} />
           <h3>{props.item}</h3>
           <h3>x {props.amount}</h3>
         </li>
@@ -36,7 +48,7 @@ const ListContent = (props) => {
               id="amount"
               min={1}
               step={1}
-              defaultValue={1}
+              defaultValue={props.amount}
             />
             <div>
               <button>Save</button>

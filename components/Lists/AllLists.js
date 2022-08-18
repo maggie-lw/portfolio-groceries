@@ -28,6 +28,7 @@ const AllLists = (props) => {
       for (const key in data) {
         listData.push({
           id: key,
+          key: key,
           title: data[key].list.title,
           dateCreated: data[key].list.dateCreated,
         });

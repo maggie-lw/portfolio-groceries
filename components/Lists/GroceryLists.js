@@ -65,6 +65,7 @@ const GroceryLists = (props) => {
       for (const key in data.content) {
         listContent.push({
           id: key,
+          key: key,
           item: data.content[key].content.name,
           amount: data.content[key].content.amount,
         });
