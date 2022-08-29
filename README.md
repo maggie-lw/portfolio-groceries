@@ -1,6 +1,6 @@
 ## Why Groceries?
 
-I realise I often rely on my notepad on my phone to help with my groceries. So my goal for this project is to create an app that can help to make grocery shopping a lot easier. I am hoping to be able to actually use this app for my groceries one day.
+I realise I often rely on my notepad on my phone to help with my groceries. So my goal for this project is to create an app that can help to make grocery shopping a lot easier. I am hoping to be able to actually use this app for my groceries one day. As a first project, I am also looking for something that can give me practice in using many of the fundamental features that ReactJS (and in this case, NextJS) offers, without being too overwhelming. 
 
 ## How I worked on this project
 
@@ -11,7 +11,7 @@ I realise I often rely on my notepad on my phone to help with my groceries. So m
 
 ## How to navigate this project
 
-- User authentication functionality. [ContextAPI](https://github.com/maggie-lw/portfolio-groceries/blob/main/components/store/auth-context.js) [Login](https://github.com/maggie-lw/portfolio-groceries/blob/main/components/Auth/LogInForm.js)
+- User authentication functionality. [ContextAPI](https://github.com/maggie-lw/portfolio-groceries/blob/main/components/store/auth-context.js) | [Login](https://github.com/maggie-lw/portfolio-groceries/blob/main/components/Auth/LogInForm.js)
 - Connecting to a database. [Example Code](https://github.com/maggie-lw/portfolio-groceries/blob/main/components/Lists/AllLists.js) 
 - Limit access to pages based on auth status. [Auth Validation Code](https://github.com/maggie-lw/portfolio-groceries/blob/main/components/Auth/AuthGuard.js) 
 - Custom CSS. [Example Code](https://github.com/maggie-lw/portfolio-groceries/blob/main/components/Lists/GroceryLists.module.css)
