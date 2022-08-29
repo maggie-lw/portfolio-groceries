@@ -1,7 +1,13 @@
+.newlist {
+  width: 100%;
+
+}
+
 .control {
     margin: 1rem 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
   
   .control label {
@@ -16,7 +22,7 @@
     display: block;
     width: 80%;
     font: inherit;
-    padding: 0.2rem;
+    padding: 0.5rem;
     border-radius: 10px;
     border: 1px solid #ccc;
   }
@@ -28,13 +34,21 @@
   }
 
   .control button {
-    background-color: #e96840;
-    border: none;
+    background-color: #bb350d;
+    border-color: #ffff;
+    cursor: pointer;
+    border: 1px solid transparent;
     border-radius: 10px;
     padding: 12px;
-    cursor: pointer;
-  }
+    color: white;
+}
 
   .control button:hover {
-    background-color: rgb(250, 140, 140);
+    background-color: #9b3131;
+    border-color: #9b3131;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
   }

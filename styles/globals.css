@@ -25,3 +25,15 @@ a {
     background: black;
   }
 }
+
+img {
+  width: 40%;
+  height: auto;
+  margin: auto;
+  margin: 2rem;
+}
+
+.centered {
+  margin: 3rem auto;
+  text-align: center;
+}

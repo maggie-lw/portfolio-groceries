@@ -46,7 +46,7 @@ const SignUpForm = () => {
         authCtx.login(userCredential.user.accessToken);
       })
       .then(() => {
-        router.push("/lists");
+        router.push("/dashboard");
       })
       .catch((err) => {
         alert(err.message);

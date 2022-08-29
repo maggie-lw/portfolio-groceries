@@ -26,13 +26,13 @@ const NewList = (props) => {
   };
 
   return (
-    <div>
+    <div className={classes.newlist}>
       {createList && (
         <div>
           <form onSubmit={submitHandler}>
             <div className={classes.control}>
-              <label htmlFor="new-list-title">List Title: </label>
-              <input id="new-list-title" ref={listTitleInputRef} />
+              <label htmlFor="new-list-title">New List: </label>
+              <input id="new-list-title" ref={listTitleInputRef} required />
             </div>
             <div className={classes.control}>
               <button>Create</button>
@@ -42,7 +42,7 @@ const NewList = (props) => {
       )}
       <div className={classes.control}>
         <button onClick={toggleCreateList}>
-          {!createList ? "Add" : "Cancel"}
+          {!createList ? "+ Add" : "Cancel"}
         </button>
       </div>
     </div>

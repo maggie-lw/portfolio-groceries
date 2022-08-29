@@ -33,7 +33,7 @@ const Navigation = () => {
           )}
           {isLoggedIn && (
             <li>
-              <Link href="/lists">Home</Link>
+              <Link href="/dashboard">Dashboard</Link>
             </li>
           )}
           {isLoggedIn && (

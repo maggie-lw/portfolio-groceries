@@ -99,7 +99,7 @@ const AllLists = (props) => {
           <h1>{username}!</h1>
         </section>
         <section className={classes.list}>
-          <h1>List of lists</h1>
+          <h1>Your Lists</h1>
           <NewList onAddList={addListHandler} />
           {isLoading && <LoadingSpinner />}
           {!isLoading && (

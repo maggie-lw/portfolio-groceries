@@ -173,8 +173,7 @@ const GroceryLists = (props) => {
       <div className={classes.sidebar}>
         <AllLists onOpenList={openListHandler} onCloseList={setOpenedListState} />
       </div>
-      {openedListState && isLoading && <LoadingSpinner />}
-      {openedListState && !isLoading && (
+      {openedListState && (
         <section className={classes.listcontent}>
           <div className={classes.listheader}>
             <div className={classes.content}>

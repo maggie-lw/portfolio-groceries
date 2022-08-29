@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import GroceryList from "../components/Lists/GroceryLists";
 
-const Lists = () => {
+const Dashboard = () => {
   return (
   <Fragment>
     <GroceryList />
@@ -9,6 +9,6 @@ const Lists = () => {
   );
 };
 
-Lists.requireAuth = true;
+Dashboard.requireAuth = true;
 
-export default Lists;
+export default Dashboard;
