@@ -6,11 +6,15 @@ import { getAuth } from "firebase/auth";
 import { Fragment, useEffect } from "react";
 import NewList from "./NewList";
 import List from "./List";
+import { useRouter } from "next/router";
 
 const AllLists = (props) => {
   const auth = getAuth();
   const username = auth.currentUser.displayName;
   const userId = auth.currentUser.uid;
+
+  const router = useRouter();
+
   const [lists, setLists] = useState([]);
   
   const fetchListHandler = async () => {
@@ -78,6 +82,7 @@ const AllLists = (props) => {
     }
 
     fetchListHandler();
+    props.onCloseList(false);
     return null;
   };
 

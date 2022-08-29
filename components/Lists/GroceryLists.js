@@ -7,18 +7,21 @@ import ListHeader from "../Content.js/ListHeader";
 import AllLists from "./AllLists";
 
 import classes from "./GroceryLists.module.css";
+import LoadingSpinner from "../Layout/LoadingSpinner";
 
 const GroceryLists = (props) => {
   const auth = getAuth();
   const userId = auth.currentUser.uid;
   const [lists, setLists] = useState([]);
   const [openedListState, setOpenedListState] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [listTitle, setListTitle] = useState("");
   const [listDate, setListDate] = useState("");
   const [listIdNo, setListIdNo] = useState("");
 
   const openListHandler = async (listId) => {
     setOpenedListState(true);
+    setIsLoading(true);
 
     try {
       const response = await fetch(
@@ -44,6 +47,7 @@ const GroceryLists = (props) => {
           checked: data.content[key].content.checked,
         });
       }
+      setIsLoading(false);
       setLists(listContent);
     } catch (error) {
       alert(error.message);
@@ -51,6 +55,7 @@ const GroceryLists = (props) => {
   };
 
   const fetchListHandler = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list.json`
@@ -72,6 +77,7 @@ const GroceryLists = (props) => {
           checked: data.content[key].content.checked,
         });
       }
+      setIsLoading(false);
       setLists(listContent);
     } catch (error) {
       alert(error.message);
@@ -165,9 +171,10 @@ const GroceryLists = (props) => {
   return (
     <div className={classes.blocks}>
       <div className={classes.sidebar}>
-        <AllLists onOpenList={openListHandler} />
+        <AllLists onOpenList={openListHandler} onCloseList={setOpenedListState} />
       </div>
-      {openedListState && (
+      {openedListState && isLoading && <LoadingSpinner />}
+      {openedListState && !isLoading && (
         <section className={classes.listcontent}>
           <div className={classes.listheader}>
             <div className={classes.content}>
