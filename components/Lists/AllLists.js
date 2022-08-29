@@ -7,6 +7,7 @@ import { Fragment, useEffect } from "react";
 import NewList from "./NewList";
 import List from "./List";
 import { useRouter } from "next/router";
+import LoadingSpinner from "../Layout/LoadingSpinner";
 
 const AllLists = (props) => {
   const auth = getAuth();
@@ -16,8 +17,11 @@ const AllLists = (props) => {
   const router = useRouter();
 
   const [lists, setLists] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   
   const fetchListHandler = async () => {
+    setIsLoading(true);
+
     try {
       const response = await fetch(
         `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}.json`
@@ -37,6 +41,7 @@ const AllLists = (props) => {
           dateCreated: data[key].list.dateCreated,
         });
       }
+      setIsLoading(false);
       setLists(listData);
     } catch (error) {
       alert(error.message);
@@ -96,6 +101,8 @@ const AllLists = (props) => {
         <section className={classes.list}>
           <h1>List of lists</h1>
           <NewList onAddList={addListHandler} />
+          {isLoading && <LoadingSpinner />}
+          {!isLoading && (
           <ul>
             {lists.map((list) => (
               <div>
@@ -110,7 +117,7 @@ const AllLists = (props) => {
                 </div>
               </div>
             ))}
-          </ul>
+          </ul>)}
         </section>
       </div>
     </Fragment>
