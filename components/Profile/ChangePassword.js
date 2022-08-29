@@ -53,6 +53,10 @@ const ChangePassword = () => {
       });
   };
 
+  const returnHandler = () => {
+    router.push("/profile");
+  };
+
   const passwordInputClasses = newPasswordInputHasError
     ? `${classes.control} ${classes.invalid}`
     : classes.control;
@@ -75,6 +79,9 @@ const ChangePassword = () => {
         <button disabled={!enteredNewPasswordIsValid}>Change Password</button>
       </div>
     </form>
+    <div className={classes.actions}>
+    <button onClick={returnHandler}>Cancel</button>
+    </div>
     </section>
   );
 };

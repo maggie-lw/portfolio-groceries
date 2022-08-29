@@ -5,7 +5,6 @@ const Profile = () => {
   return (
     <div>
       <UserProfile />
-      <Link href="/profile/change-password">Change Password</Link>
     </div>
   );
 };

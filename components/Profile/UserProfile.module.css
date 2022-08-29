@@ -1,0 +1,19 @@
+.profile {
+    margin: 3rem auto;
+    width: 100%;
+    max-width: 32rem;
+    border-radius: 10px;
+    background-color: #dd7248;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    text-align: center;
+}
+
+.link {
+    margin: 3rem 0 0 0;
+    font-size: 1.3rem;
+}
+
+.link a:hover {
+    color: #884646;
+}
