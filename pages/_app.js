@@ -2,11 +2,8 @@ import Layout from "../components/Layout/Layout";
 import { AuthContextProvider } from "../components/store/auth-context";
 import "../styles/globals.css";
 import { initializeApp } from "firebase/app";
-
-import AuthContext from "../components/store/auth-context";
-import { useContext } from "react";
-import { useRouter } from "next/router";
-
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,22 +21,6 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 function MyApp({ Component, pageProps }) {
-
-  const authCtx = useContext(AuthContext);
-  const isLoggedIn = authCtx.isLoggedIn;
-
-  const router = useRouter();
-
-  if (pageProps.protected && !isLoggedIn) {
-    return (
-      <AuthContextProvider>
-      <Layout>
-        <h2>Sorry you don't have access! Please log in or sign up to gain access.</h2>
-      </Layout>
-    </AuthContextProvider>
-    )
-  }
-
   return (
     <AuthContextProvider>
       <Layout>
