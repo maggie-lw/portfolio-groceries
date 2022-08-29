@@ -1,13 +1,10 @@
 import { useContext } from "react";
 import AuthContext from "../store/auth-context";
-import { useRouter } from "next/router";
 
 import classes from "./Navigation.module.css";
 import Link from "next/link";
 
 const Navigation = () => {
-  const router = useRouter();
-
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
 
@@ -15,12 +12,13 @@ const Navigation = () => {
     event.preventDefault();
 
     authCtx.logout();
-    router.push("/");
   };
 
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>React Groceries</div>
+      <div className={classes.logo}>
+        <Link href="/">React Groceries</Link>
+      </div>
       <nav>
         <ul>
           {!isLoggedIn && (
@@ -35,12 +33,12 @@ const Navigation = () => {
           )}
           {isLoggedIn && (
             <li>
-              <Link href='/lists'>Home</Link>
+              <Link href="/lists">Home</Link>
             </li>
           )}
           {isLoggedIn && (
             <li>
-              <Link href='/profile'>Profile</Link>
+              <Link href="/profile">Profile</Link>
             </li>
           )}
           {isLoggedIn && (

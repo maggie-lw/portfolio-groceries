@@ -9,4 +9,6 @@ const Lists = () => {
   );
 };
 
+Lists.requireAuth = true;
+
 export default Lists;

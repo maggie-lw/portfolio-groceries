@@ -2,8 +2,8 @@ import Layout from "../components/Layout/Layout";
 import { AuthContextProvider } from "../components/store/auth-context";
 import "../styles/globals.css";
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import AuthGuard from "../components/Auth/AuthGuard";
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -24,7 +24,13 @@ function MyApp({ Component, pageProps }) {
   return (
     <AuthContextProvider>
       <Layout>
-        <Component {...pageProps} />
+        {Component.requireAuth ? (
+          <AuthGuard>
+            <Component {...pageProps} />
+          </AuthGuard>
+        ) : (
+          <Component {...pageProps} />
+        )}
       </Layout>
     </AuthContextProvider>
   );

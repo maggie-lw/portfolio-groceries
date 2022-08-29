@@ -4,4 +4,6 @@ const ChangePasswordPage = () => {
     return <div><ChangePassword /></div>
 };
 
+ChangePasswordPage.requireAuth = true;
+
 export default ChangePasswordPage;

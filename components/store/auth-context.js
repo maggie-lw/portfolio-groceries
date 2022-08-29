@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 
 const AuthContext = React.createContext({
@@ -11,8 +11,20 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const auth = getAuth();
   const [token, setToken] = useState(null);
+  const [initializing, setInitializing] = useState(true);
 
   const userIsLoggedIn = !!token;
+
+  useEffect(() => {
+    auth.onAuthStateChanged((token) => {
+      if (token) {
+        setToken(token);
+      } else {
+        setToken(null);
+      }
+      setInitializing(false);
+    })
+  }, []);
 
   const loginHandler = (token) => {
     setToken(token);
@@ -28,6 +40,7 @@ export const AuthContextProvider = (props) => {
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
+    initializing
   };
 
   return (
