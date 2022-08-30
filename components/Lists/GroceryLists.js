@@ -87,7 +87,6 @@ const GroceryLists = (props) => {
   // --------------------------- Function to add items into list. ------------------------------------
 
   const addItemHandler = async (newContent) => {
-    console.log("List ID " + listIdNo);
     const response = await fetch(
       `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list/content.json`,
       {
