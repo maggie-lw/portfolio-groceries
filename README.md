@@ -27,6 +27,7 @@ I realise I often rely on my notepad on my phone to help with my groceries. So m
 - I realised I forgot to create a bigger umbrella folder called 'src'...
 - I conceptualised the component tree within my head before I started. Things got a little messy in the process with the nested props. I would want to include drawing a component tree diagram before I start my future projects. 
 - Code can be cleaner and reduced. EG: Creating a custom hook for http requests on list and content management.
+- Code can be optimised. EG: React memo or lazy loading. 
 - Incorporate server-side rendering for Dashboard to improve performance; and static generation for index pages.
 - Set timer to log user out to improve security.  
 - To improve the efficacy of the app, I'd like to add the ability for users to choose the measurements of each item (eg kg, packets). 
