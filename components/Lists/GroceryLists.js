@@ -7,21 +7,22 @@ import ListHeader from "../Content.js/ListHeader";
 import AllLists from "./AllLists";
 
 import classes from "./GroceryLists.module.css";
-import LoadingSpinner from "../Layout/LoadingSpinner";
 
 const GroceryLists = (props) => {
   const auth = getAuth();
   const userId = auth.currentUser.uid;
-  const [lists, setLists] = useState([]);
+
   const [openedListState, setOpenedListState] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+
+  const [lists, setLists] = useState([]);
   const [listTitle, setListTitle] = useState("");
   const [listDate, setListDate] = useState("");
   const [listIdNo, setListIdNo] = useState("");
 
+  // ------------------- Function to open a chosen list. ------------------------------------------------
+
   const openListHandler = async (listId) => {
     setOpenedListState(true);
-    setIsLoading(true);
 
     try {
       const response = await fetch(
@@ -47,15 +48,15 @@ const GroceryLists = (props) => {
           checked: data.content[key].content.checked,
         });
       }
-      setIsLoading(false);
       setLists(listContent);
     } catch (error) {
       alert(error.message);
     }
   };
 
+  // ---------------------- Function to fetch and update data following a change. ------------------------
+
   const fetchListHandler = async () => {
-    setIsLoading(true);
     try {
       const response = await fetch(
         `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list.json`
@@ -77,12 +78,13 @@ const GroceryLists = (props) => {
           checked: data.content[key].content.checked,
         });
       }
-      setIsLoading(false);
       setLists(listContent);
     } catch (error) {
       alert(error.message);
     }
   };
+
+  // --------------------------- Function to add items into list. ------------------------------------
 
   const addItemHandler = async (newContent) => {
     console.log("List ID " + listIdNo);
@@ -106,6 +108,8 @@ const GroceryLists = (props) => {
     return null;
   };
 
+  // ---------------------- Function to edit the amount of item in list. ------------------------------
+
   const editItemHandler = async (itemId, newAmount) => {
     const response = await fetch(
       `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list/content/${itemId}/content.json`,
@@ -128,6 +132,8 @@ const GroceryLists = (props) => {
     return null;
   };
 
+  // ---------------------- Function to mark item as completed. ------------------------------------
+
   const completedItemHandler = async (itemId, checkedForCompletion) => {
     const response = await fetch(
       `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list/content/${itemId}/content.json`,
@@ -149,6 +155,8 @@ const GroceryLists = (props) => {
     fetchListHandler();
     return null;
   };
+
+  // ---------------------------- Function to delete item off list. --------------------------------
 
   const deleteItemHandler = async (itemId) => {
     const response = await fetch(
@@ -186,7 +194,7 @@ const GroceryLists = (props) => {
               ) : (
                 lists.map((list) => (
                   <ListContent
-                    id={list.id}
+                    key={list.id}
                     item={list.item}
                     amount={list.amount}
                     checked={list.checked}

@@ -1,24 +1,24 @@
-import classes from "./AllLists.module.css";
-
+import { Fragment, useEffect } from "react";
 import { useState } from "react";
 import { getAuth } from "firebase/auth";
 
-import { Fragment, useEffect } from "react";
+
 import NewList from "./NewList";
 import List from "./List";
-import { useRouter } from "next/router";
 import LoadingSpinner from "../Layout/LoadingSpinner";
+
+import classes from "./AllLists.module.css";
 
 const AllLists = (props) => {
   const auth = getAuth();
   const username = auth.currentUser.displayName;
   const userId = auth.currentUser.uid;
 
-  const router = useRouter();
-
   const [lists, setLists] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   
+  // -------------------------------- Fetch all lists from DB. ----------------------------------------
+
   const fetchListHandler = async () => {
     setIsLoading(true);
 
@@ -48,9 +48,13 @@ const AllLists = (props) => {
     }
   };
 
+  // -------------------------------- useEffect fetches list on first render. -----------------------------
+
   useEffect(() => {
     fetchListHandler()
   }, []);
+
+  // ------------------------------- Function to add a new list. ----------------------------------------
 
   const addListHandler = async (newList) => {
     const response = await fetch(
@@ -71,6 +75,8 @@ const AllLists = (props) => {
     fetchListHandler();
     return null;
   };
+
+  // ---------------------------------- Function to delete a list. --------------------------------------
 
   const deleteListHandler = async (id) => {
     const response = await fetch(
@@ -105,9 +111,8 @@ const AllLists = (props) => {
           {!isLoading && (
           <ul>
             {lists.map((list) => (
-              <div>
+              <div key={list.id}>
                 <List
-                  key={list.id}
                   title={list.title}
                   dateCreated={list.dateCreated}
                 />
