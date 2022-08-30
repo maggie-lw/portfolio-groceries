@@ -189,7 +189,7 @@ const GroceryLists = (props) => {
                 <AddContent onAddItem={addItemHandler} />
               </div>
               {lists.length === 0 ? (
-                <p>There's nothing in here!</p>
+                <p>There&apos;s nothing in here!</p>
               ) : (
                 lists.map((list) => (
                   <ListContent

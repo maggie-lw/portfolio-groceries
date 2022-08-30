@@ -79,7 +79,7 @@ const SignUpForm = () => {
             onChange={emailChangeHandler}
             onBlur={emailBlurHandler}
           />
-          {emailInputHasError && <p>Email must contain "@"!</p>}
+          {emailInputHasError && <p>Email must contain &ldquo;@&rdquo;!</p>}
         </div>
         <div className={passwordInputClasses}>
           <label htmlFor="password">Password: </label>

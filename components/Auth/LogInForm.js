@@ -80,7 +80,7 @@ const LogInForm = () => {
             value={enteredEmail}
             required
           />
-          {emailInputHasError && <p>Email must contain "@"!</p>}
+          {emailInputHasError && <p>Email must contain &ldquo;@&rdquo;!</p>}
         </div>
         <div className={passwordInputClasses}>
           <label htmlFor="password">Password: </label>
