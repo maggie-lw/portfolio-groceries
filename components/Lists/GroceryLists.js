@@ -193,6 +193,7 @@ const GroceryLists = (props) => {
               ) : (
                 lists.map((list) => (
                   <ListContent
+                    id={list.id}
                     key={list.id}
                     item={list.item}
                     amount={list.amount}
