@@ -26,6 +26,8 @@ I realise I often rely on my notepad on my phone to help with my groceries. So m
 
 - I realised I forgot to create a bigger umbrella folder called 'src'...
 - I conceptualised the component tree within my head before I started. Things got a little messy in the process with the nested props. I would want to include drawing a component tree diagram before I start my future projects. 
+- Code can be cleaner and reduced. EG: Creating a custom hook for http requests on list and content management.
+- Incorporate server-side rendering for Dashboard to improve performance; and static generation for index pages. 
 - I still need to familiarise myself more with CSS. 
 
 ##

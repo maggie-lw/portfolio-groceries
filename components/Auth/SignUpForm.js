@@ -55,41 +55,6 @@ const SignUpForm = () => {
 
     emailResetHandler();
     passwordResetHandler();
-    /*fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDeI2hVzfgQxaivutV8vA4z6n1X8fnSx-o",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: enteredEmail,
-          password: enteredPassword,
-          returnSecureToken: true,
-        }),
-        headers: { "Content-Type": "application/json" },
-      }
-    )
-      .then((response) => {
-        setIsLoading(false);
-        if (response.ok) {
-          return response.json();
-        } else {
-          return response.json().then((data) => {
-            let errorMessage = "Authentication failed!";
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then(() => {
-        router.push("/log-in");
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
-
-    emailResetHandler();
-    passwordResetHandler();*/
   };
 
   const emailInputClasses = emailInputHasError
