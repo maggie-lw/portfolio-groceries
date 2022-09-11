@@ -23,7 +23,7 @@ const AddContent = (props) => {
     };
 
     setToggleAdd(!toggleAdd);
-    props.onAddItem(newContent);
+    props.onAddItem(newContent, props.listKey);
   };
 
   return (

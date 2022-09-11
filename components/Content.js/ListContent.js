@@ -15,17 +15,17 @@ const ListContent = (props) => {
 
     const newAmount = editAmountInputRef.current.value;
     setEditItem(false);
-    props.onEditItem(props.id, newAmount);
+    props.onEditItem(props.id, newAmount, props.listKey);
   };
 
   const toggleCompletion = (event) => {
     setCompleted(event.target.checked);
-    props.onCompleteItem(props.id, event.target.checked);
+    props.onCompleteItem(props.id, event.target.checked, props.listKey);
   };
 
   const deleteHandler = () => {
 
-    props.onDeleteItem(props.id);
+    props.onDeleteItem(props.id, props.listKey);
   };
 
   const listCompletionClasses = props.checked

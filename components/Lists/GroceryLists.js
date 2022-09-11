@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getAuth } from "firebase/auth";
 
 import AddContent from "../Content.js/AddContent";
@@ -15,15 +15,12 @@ const GroceryLists = (props) => {
   const [openedListState, setOpenedListState] = useState(false);
 
   const [lists, setLists] = useState([]);
-  const [listTitle, setListTitle] = useState("");
-  const [listDate, setListDate] = useState("");
-  const [listIdNo, setListIdNo] = useState("");
+  const [listData, setListData] = useState({});
 
   // ------------------- Function to open a chosen list. ------------------------------------------------
 
   const openListHandler = async (listId) => {
     setOpenedListState(true);
-
     try {
       const response = await fetch(
         `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listId}/list.json`
@@ -36,9 +33,11 @@ const GroceryLists = (props) => {
 
       const listContent = [];
 
-      setListTitle(data.title);
-      setListDate(data.dateCreated);
-      setListIdNo(listId);
+      setListData({
+        listKey: listId,
+        title: data.title,
+        dateCreated: data.dateCreated,
+      });
 
       for (const key in data.content) {
         listContent.push({
@@ -56,10 +55,10 @@ const GroceryLists = (props) => {
 
   // ---------------------- Function to fetch and update data following a change. ------------------------
 
-  const fetchListHandler = async () => {
+  const fetchListHandler = async (listKey) => {
     try {
       const response = await fetch(
-        `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list.json`
+        `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listKey}/list.json`
       );
       if (!response.ok) {
         throw new Error("Something went wrong when retrieving data!");
@@ -86,9 +85,9 @@ const GroceryLists = (props) => {
 
   // --------------------------- Function to add items into list. ------------------------------------
 
-  const addItemHandler = async (newContent) => {
+  const addItemHandler = async (newContent, listKey) => {
     const response = await fetch(
-      `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list/content.json`,
+      `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listKey}/list/content.json`,
       {
         method: "POST",
         body: JSON.stringify({ content: newContent }),
@@ -102,16 +101,16 @@ const GroceryLists = (props) => {
       throw new Error(data.message || "Could not create item.");
     }
 
-    fetchListHandler();
+    fetchListHandler(listData.listKey);
 
     return null;
   };
 
   // ---------------------- Function to edit the amount of item in list. ------------------------------
 
-  const editItemHandler = async (itemId, newAmount) => {
+  const editItemHandler = async (itemId, newAmount, listKey) => {
     const response = await fetch(
-      `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list/content/${itemId}/content.json`,
+      `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listKey}/list/content/${itemId}/content.json`,
       {
         method: "PATCH",
         body: JSON.stringify({ amount: newAmount }),
@@ -127,15 +126,15 @@ const GroceryLists = (props) => {
       throw new Error(data.message || "Could not update item amount.");
     }
 
-    fetchListHandler();
+    fetchListHandler(listData.listKey);
     return null;
   };
 
   // ---------------------- Function to mark item as completed. ------------------------------------
 
-  const completedItemHandler = async (itemId, checkedForCompletion) => {
+  const completedItemHandler = async (itemId, checkedForCompletion, listKey) => {
     const response = await fetch(
-      `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list/content/${itemId}/content.json`,
+      `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listKey}/list/content/${itemId}/content.json`,
       {
         method: "PATCH",
         body: JSON.stringify({ checked: checkedForCompletion }),
@@ -151,15 +150,15 @@ const GroceryLists = (props) => {
       throw new Error(data.message || "Could not update completion of item.");
     }
 
-    fetchListHandler();
+    fetchListHandler(listData.listKey);
     return null;
   };
 
   // ---------------------------- Function to delete item off list. --------------------------------
 
-  const deleteItemHandler = async (itemId) => {
+  const deleteItemHandler = async (itemId, listKey) => {
     const response = await fetch(
-      `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listIdNo}/list/content/${itemId}.json`,
+      `https://portfolio-groceries-default-rtdb.asia-southeast1.firebasedatabase.app/lists/${userId}/${listKey}/list/content/${itemId}.json`,
       {
         method: "DELETE",
       }
@@ -171,7 +170,7 @@ const GroceryLists = (props) => {
       throw new Error(data.message || "Could not delete item.");
     }
 
-    fetchListHandler();
+    fetchListHandler(listData.listKey);
     return null;
   };
 
@@ -184,9 +183,9 @@ const GroceryLists = (props) => {
         <section className={classes.listcontent}>
           <div className={classes.listheader}>
             <div className={classes.content}>
-              <ListHeader title={listTitle} dateCreated={listDate} />
+              <ListHeader listKey={listData.listKey} title={listData.title} dateCreated={listData.dateCreated} />
               <div>
-                <AddContent onAddItem={addItemHandler} />
+                <AddContent listKey={listData.listKey} onAddItem={addItemHandler} />
               </div>
               {lists.length === 0 ? (
                 <p>There&apos;s nothing in here!</p>
@@ -198,6 +197,7 @@ const GroceryLists = (props) => {
                     item={list.item}
                     amount={list.amount}
                     checked={list.checked}
+                    listKey={listData.listKey}
                     onEditItem={editItemHandler}
                     onCompleteItem={completedItemHandler}
                     onDeleteItem={deleteItemHandler}
